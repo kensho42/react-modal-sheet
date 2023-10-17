@@ -22,6 +22,7 @@ import {
 import {
   REDUCED_MOTION_TWEEN_CONFIG,
   DEFAULT_TWEEN_CONFIG,
+  DEFAULT_DRAG_ANIMATION,
   DRAG_CLOSE_THRESHOLD,
   DRAG_VELOCITY_THRESHOLD,
   IS_SSR,
@@ -54,6 +55,7 @@ const Sheet = React.forwardRef<any, SheetProps>(
       disableDrag = false,
       prefersReducedMotion = false,
       tweenConfig = DEFAULT_TWEEN_CONFIG,
+      dragAnimationConfig = DEFAULT_DRAG_ANIMATION,
       ...rest
     },
     ref
@@ -67,6 +69,9 @@ const Sheet = React.forwardRef<any, SheetProps>(
       type: 'tween',
       ...(reduceMotion ? REDUCED_MOTION_TWEEN_CONFIG : tweenConfig),
     };
+    const dragAnimationOptions: Transition = {
+      dragAnimationConfig,
+    }
 
     // NOTE: the inital value for `y` doesn't matter since it is overwritten by
     // the value driven by the `AnimatePresence` component when the sheet is opened
@@ -155,7 +160,7 @@ const Sheet = React.forwardRef<any, SheetProps>(
         snapTo = validateSnapTo({ snapTo, sheetHeight });
 
         // Update the spring value so that the sheet is animated to the snap point
-        animate(y, snapTo, animationOptions);
+        animate(y, snapTo, dragAnimationOptions);
 
         if (snapPoints && onSnap) {
           const snapValue = Math.abs(Math.round(snapPoints[0] - snapTo));
