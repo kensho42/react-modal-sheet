@@ -26,6 +26,16 @@ export type SheetTweenConfig = {
   duration: number;
 };
 
+export type SheetSpringConfig = {
+  type: string;
+  bounceStiffness: number;
+  bounceDamping: number;
+  timeConstant: number;
+  min: number;
+  max: number;
+};
+
+
 export type SheetProps = {
   isOpen: boolean;
   children: React.ReactNode;
@@ -36,6 +46,7 @@ export type SheetProps = {
   detent?: SheetDetent;
   initialSnap?: number; // index of snap points array
   tweenConfig?: SheetTweenConfig;
+  springConfig?: SheetSpringConfig;
   disableDrag?: boolean;
   disableScrollLocking?: boolean;
   prefersReducedMotion?: boolean;
