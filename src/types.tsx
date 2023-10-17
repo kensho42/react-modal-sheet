@@ -26,7 +26,7 @@ export type SheetTweenConfig = {
   duration: number;
 };
 
-export type SheetSpringConfig = {
+export type DragAnimationConfig = {
   type: string;
   bounceStiffness: number;
   bounceDamping: number;
@@ -46,7 +46,7 @@ export type SheetProps = {
   detent?: SheetDetent;
   initialSnap?: number; // index of snap points array
   tweenConfig?: SheetTweenConfig;
-  springConfig?: SheetSpringConfig;
+  dragAnimationConfig?: DragAnimationConfig;
   disableDrag?: boolean;
   disableScrollLocking?: boolean;
   prefersReducedMotion?: boolean;
